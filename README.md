@@ -15,7 +15,7 @@ Cyclistic is a fictional bike-share program in Chicago, featuring over 5,800 bic
 The primary objectives of this analysis are to:
 
 * Identify differences in how casual riders and annual members use Cyclistic bikes.
-* Determine factors that would incentivize casual riders to purchase annual memberships.
+* Determine a strategy to convert casual riders to annual members.
 
 ### 1.3 Key Questions
 
