@@ -1,0 +1,2 @@
+missing_ride_id,missing_rideable_type,missing_start_time,missing_end_time,missing_start_station_name,missing_start_station_id,missing_end_station_name,missing_end_station_id,missing_start_latitude,missing_start_longitude,missing_end_latitude,missing_end_longitude,missing_member_type
+0,0,0,0,1080148,1080148,1110075,1110075,0,0,6744,6744,0
