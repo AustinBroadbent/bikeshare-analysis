@@ -1,5 +1,5 @@
-library(tidyverse)
-library(showtext) 
+library(tidyverse) #for data manipulation and visualization
+library(showtext)  #for changing fonts used in plots
 
 ####Formatting & Values --------------------------------------------------------
 font_add_google("Questrial", "questrial") 
@@ -26,15 +26,15 @@ labels_seq <- hour_labels[as.character(breaks_seq)]
 df <- read_csv("C:/Users/Administrator/Downloads/cleaned_bikeshare_data.csv")
 df <- df |> select(c(ride_id, member_casual, rideable_type, started_at, ended_at, ride_duration_minutes)) #Only needed columns
 
-df$started_at <- ymd_hms(df$started_at, tz="UTC") #Extract time components
-df <- df |> 
+df$started_at <- ymd_hms(df$started_at, tz="UTC")  #Ensure started_at is the correct datatype
+df <- df |>                                        #Extract time components into new columns
   mutate(
     hour = hour(started_at),
     weekday = weekdays(started_at),
     month = month(started_at)
   )
-day_order <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday") #Order weekdays for plotting
-df$weekday <- factor(df$weekday, levels = day_order, ordered = TRUE)
+day_order <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+df$weekday <- factor(df$weekday, levels = day_order, ordered = TRUE) #Order weekdays for plotting
 
 #Rider Type
 rider_type <- df |> 
@@ -64,8 +64,6 @@ monthly_rider_type <- df |>
   group_by(member_casual, month) |> 
   summarize(ride_count = n(),
             avg_duration = mean(ride_duration_minutes))
-
-rm(df) #save space by removing the original dataframe from memory
 
 #### Summary Statistics --------------------------------------------------------
 
