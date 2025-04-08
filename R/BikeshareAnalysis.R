@@ -2,7 +2,7 @@ library(tidyverse)
 library(showtext) 
 
 ####Formatting & Values --------------------------------------------------------
-font_add_google("Questrial", "questrial") #Fonts need to be downloaded from Google Fonts
+font_add_google("Questrial", "questrial") 
 font_add_google("Nunito", "nunito")
 showtext_auto()
 
@@ -12,15 +12,13 @@ text_color <- "#3f4252"
 rider_colors <- c("casual" = "#F9918A", "member" = "#33CCD0")
 rider_labels <- c("Casual Riders", "Members")
 
-bike_types <- c("electric_scooter", "electric_bike", "classic_bike")
 bike_colors <- c("electric_scooter" = "#FF7F50", "electric_bike" = "#33C860", "classic_bike" = "#81B0FF")
+bike_labels <- c("Classic Bike", "Electric Bike", "Electric Scooter") # Labels for rideable type plot
 
 hour_labels <- setNames(format(strptime(0:23, format = "%H"), "%l %p"), 0:23) #Formatting for x-axis of hourly plots
 breaks_seq <- seq(0, 23, by = 4)
 labels_seq <- hour_labels[as.character(breaks_seq)]
 
-day_order <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday") #Set day order for week plots
-bike_labels <- c("Classic Bike", "Electric Bike", "Electric Scooter") # Labels for rideable type plot
 
 #### Dataframe Creation --------------------------------------------------------
 
@@ -52,22 +50,18 @@ ride_preference <- df |>
 #Hourly
 hourly_rider_type <- df |> 
   group_by(member_casual, hour) |>
-  filter(!is.na(hour)) |> 
   summarize(ride_count = n(),
             avg_duration = mean(ride_duration_minutes))
 
 #Weekday
 weekday_rider_type <- df |> 
   group_by(member_casual, weekday) |>
-  filter(!is.na(hour)) |> 
   summarize(ride_count = n(),
-            avg_duration = mean(ride_duration_minutes)) |> 
-  mutate(start_weekday = factor(start_weekday, levels = day_order, ordered = TRUE))
+            avg_duration = mean(ride_duration_minutes))
 
 #Monthly
 monthly_rider_type <- df |>
   group_by(member_casual, month) |> 
-  filter(!is.na(hour)) |> 
   summarize(ride_count = n(),
             avg_duration = mean(ride_duration_minutes))
 
