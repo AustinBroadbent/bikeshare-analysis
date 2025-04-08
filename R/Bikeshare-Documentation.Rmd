@@ -121,7 +121,7 @@ FROM
 ```
 
 ```{r missing_values, echo=FALSE}
-missing_df <- read_csv("C:/Users/Administrator/Downloads/missing_values.csv", show_col_types = FALSE)
+missing_df <- read_csv("data/CSVs/missing_values.csv", show_col_types = FALSE)
 missing_df <- t(missing_df)
 knitr::kable(missing_df)
 ```
@@ -160,14 +160,14 @@ HAVING COUNT(*) > 1;
 ```
 
 ```{r duplicate_values, echo=FALSE}
-duplicates_df <- read_csv("C:/Users/Administrator/Downloads/duplicate_rows.csv", show_col_types = FALSE)
+duplicates_df <- read_csv("data/CSVs/duplicate_rows.csv", show_col_types = FALSE)
 knitr::kable(head(duplicates_df))
 ```
 
 Note that there were 121 duplicates. I noticed that all of the duplicates had a count of 2. Upon further investigation, the duplicated instances were identical, EXCEPT that the start and end times for one instance were more precise than the other instance. Below is an example case:
 
 ```{r example_duplicate, echo=FALSE}
-example_duplicate <- read_csv("C:/Users/Administrator/Downloads/example_duplicate.csv", show_col_types = FALSE)
+example_duplicate <- read_csv("data/CSVs/example_duplicate.csv", show_col_types = FALSE)
 knitr::kable(example_duplicate)
 ```
 
